@@ -3,20 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to LibAsserv 2014's documentation!
-==========================================
+################################
+Documentation de lib_asserv_2014
+################################
 
-Contents:
+Bienvenu sur documentation de la bibliothèque utilisée pour
+l'asservissement du robot Fatman pour la coupe de France de robotique 2014.
+
+Vous trouverez le code source sur le dépot Github suivant :
+https://github.com/7Robot/lib_asserv_2014
+
+Table des matières:
 
 .. toctree::
    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   intro
+   motion
+   asserv
+   odo
+   pid
