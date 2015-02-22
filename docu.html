@@ -63,7 +63,9 @@
 <li class="toctree-l1"><a class="reference internal" href="odo.html">Odométrie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pid.html">Régulateur PID</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Construire cette documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#la-documentation-avec-sphinx">La documentation avec Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-de-sphinx">Installation de Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialiser-la-documentation">Initialiser la documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-de-la-documentation-sphinx">Configuration de la documentation Sphinx</a></li>
 </ul>
 </li>
 </ul>
@@ -123,10 +125,167 @@ le support de fonctionnalités telles que :</p>
 <p>J&#8217;ai opté pour la 2<sup>e</sup> car elle gère mieux l&#8217;affichage
 des formules mathématiques (à la mode LaTeX)
 et qu&#8217;elle permet d&#8217;exporter la documentation vers un pdf.</p>
-<div class="section" id="la-documentation-avec-sphinx">
-<h2>La documentation avec Sphinx<a class="headerlink" href="#la-documentation-avec-sphinx" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Sphinx est un outil pour générer facilement de la documentation
-à base de fichier respectant la syntaxe rST (reStructuredText).</p>
+<p><a class="reference external" href="http://sphinx-doc.org/index.html">Sphinx</a> est un outil
+pour générer facilement de la documentation
+à base de fichiers respectant la syntaxe rST (reStructuredText).
+Vous pourrez trouver une introduction à la syntaxe rST à cette adresse :
+<a class="reference external" href="http://sphinx-doc.org/rest.html">http://sphinx-doc.org/rest.html</a>. Elle est à la fois simple et puissante !</p>
+<div class="section" id="installation-de-sphinx">
+<h2>Installation de Sphinx<a class="headerlink" href="#installation-de-sphinx" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous pouvez trouver tous les détails de l&#8217;installation pour votre configuration ici : <a class="reference external" href="http://sphinx-doc.org/install.html">http://sphinx-doc.org/install.html</a>.
+Pour moi ça a été extrêmement simple, j&#8217;ai utilisé le gestionnaire de paquets
+de python (<a class="reference external" href="https://pip.pypa.io/en/latest/">pip</a>) :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install sphinx
+</pre></div>
+</div>
+<p>Et c&#8217;est tout !</p>
+</div>
+<div class="section" id="initialiser-la-documentation">
+<h2>Initialiser la documentation<a class="headerlink" href="#initialiser-la-documentation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les sources de la documentation vont se trouver dans un dossier <tt class="docutils literal"><span class="pre">docs</span></tt>.
+On commence donc par créer ce dossier.
+Ensuite il suffit d&#8217;utiliser la commande <tt class="docutils literal"><span class="pre">sphinx-quickstart</span></tt>
+qui permet de configurer la documentation :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir docs
+<span class="nv">$ </span><span class="nb">cd </span>docs/
+<span class="nv">$ </span>sphinx-quickstart
+</pre></div>
+</div>
+<p>Généralement vous pouvez laisser la configuration par défaut qui vous est proposée.
+Attention, il y a quand même certaines questions pour lesquelles il faut changer la réponse :</p>
+<div class="highlight-rst"><div class="highlight"><pre>&gt; Separate source and build directories (y/n) [n]: y
+&gt; autodoc: automatically insert docstrings from modules (y/n) [n]: y
+&gt; mathjax: include math, rendered in the browser by MathJax (y/n) [n]: y
+</pre></div>
+</div>
+<p>A la fin du scrip Sphinx aura initialisé la configuration en générant
+2 dossiers : <tt class="docutils literal"><span class="pre">build</span></tt> et <tt class="docutils literal"><span class="pre">source</span></tt> ainsi qu&#8217;un makefile
+pour faciliter la génération de la doc avec une commande du type :</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>make html
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-de-la-documentation-sphinx">
+<h2>Configuration de la documentation Sphinx<a class="headerlink" href="#configuration-de-la-documentation-sphinx" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;utilisation du script <tt class="docutils literal"><span class="pre">sphinx-quickstart</span></tt> a généré plusieurs fichiers
+permettant d&#8217;agir sur la configuration de la documentation dans le dossier <tt class="docutils literal"><span class="pre">docs/</span></tt>.
+Je vais détailler maintenant les quelques manip à faire pour améliorer cette configuration.</p>
+<div class="section" id="heberger-sa-documentation-sur-github">
+<h3>Héberger sa documentation sur Github<a class="headerlink" href="#heberger-sa-documentation-sur-github" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si vous travaillez sur du code avec un dépot Git (j&#8217;espère !),
+il y a quelques manip à faire.</p>
+<p>Une documentation qui n&#8217;est visible par personne n&#8217;est pas très utile.
+Du coup il faut héberger quelquepart la documentation générée.
+Si vous hébergez votre code sur <a class="reference external" href="https://github.com/">Github</a> c&#8217;est parfait !
+Github peut aussi héberger la documentation dans ce que l&#8217;on appelle
+les &#8220;pages Github&#8221;. Vous pouvez avoir une explication ici :
+<a class="reference external" href="https://help.github.com/articles/what-are-github-pages/">https://help.github.com/articles/what-are-github-pages/</a></p>
+<p>Pour activer les pages Github de votre dépot il suffit de créer
+un nouvelle branche vierge intitulée <tt class="docutils literal"><span class="pre">gh-pages</span></tt> et de la push :</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="nv">$ </span>git checkout --orphan gh-pages
+<span class="nv">$ </span>git rm -rf .
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;My page&quot;</span> &gt; index.html
+<span class="nv">$ </span>git add index.html
+<span class="nv">$ </span>git commit -am <span class="s2">&quot;Premier commit sur les pages Github&quot;</span>
+<span class="nv">$ </span>git push origin gh-pages -u
+</pre></div>
+</div>
+</div>
+<div class="section" id="configurer-la-compilation-vers-html">
+<h3>Configurer la compilation vers HTML<a class="headerlink" href="#configurer-la-compilation-vers-html" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On veut pouvoir build la documentation dans la branche <tt class="docutils literal"><span class="pre">gh-pages</span></tt>.
+Or ca ne va pas être pratique de devoir changer constamment de branche
+pour la documentation. Ce que je suggère donc c&#8217;est d&#8217;avoir un deuxième
+dossier qui est un clone du même dépot mais dans lequel on reste
+toujours sur la branche <tt class="docutils literal"><span class="pre">gh-pages</span></tt> :</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> ../
+<span class="nv">$ </span>mkdir mondepot_gh-pages
+<span class="nv">$ </span><span class="nb">cd </span>mondepot_gh-pages/
+<span class="nv">$ </span>git clone -b gh-pages --single-branch git@github.com:moi/mondepot.git .
+</pre></div>
+</div>
+<p>Maintenant il faut changer la configuration pour build dans ce dossier.
+On repart dans le dossier original et on modifie le fichier <tt class="docutils literal"><span class="pre">Makefile</span></tt> :</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="nv">BUILDDIR</span> <span class="o">=</span> ../../mondepot_gh-pages
+
+<span class="nf">html</span><span class="o">:</span>
+   <span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -b html <span class="k">$(</span>ALLSPHINXOPTS<span class="k">)</span> <span class="k">$(</span>BUILDDIR<span class="k">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utiliser-le-theme-rtd-readthedocs">
+<h3>Utiliser le thème rtd (readTheDocs)<a class="headerlink" href="#utiliser-le-theme-rtd-readthedocs" title="Lien permanent vers ce titre">¶</a></h3>
+<p>C&#8217;est tout simple. Il suffit d&#8217;installer le theme via pip :</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install sphinx_rtd_theme
+</pre></div>
+</div>
+<p>Ensuite dans le fichier <tt class="docutils literal"><span class="pre">conf.py</span></tt> :</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s">&quot;sphinx_rtd_theme&quot;</span>
+<span class="n">html_theme_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">sphinx_rtd_theme</span><span class="o">.</span><span class="n">get_html_theme_path</span><span class="p">()]</span>
+</pre></div>
+</div>
+<p>Pour que le theme marche une fois la documentation poussée sur Github,
+il faut faire une dernière petite manip :
+il faut ajouter un fichier vide intitulé <tt class="docutils literal"><span class="pre">.nojekyll</span></tt>
+(dans la branche gh-pages) et le push (add et commit avant biensûr).
+Sinon, Github va ignorer les dossiers commençant par _ dont le dossier
+_static/ qui contient les styles CSS et images et donc le theme
+ne marchera pas (vous aurez une vielle page html toute moche).</p>
+</div>
+<div class="section" id="configurer-la-compilation-vers-pdf-latex">
+<h3>Configurer la compilation vers PDF (Latex)<a class="headerlink" href="#configurer-la-compilation-vers-pdf-latex" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La compilation de la doc vers pdf (Latex) est un outils puissant
+mais qui demande un petit peu de réglages.
+J&#8217;ai choisi de compiler en français (babel french),
+dans un dossier temporaire et de ne garder que les pdf à la fin
+(supprimer directement les fichiers Latex générés automatiquement).
+Pour le type de document Latex on a le choix entre 2 types :
+<tt class="docutils literal"><span class="pre">manual</span></tt> qui correspond à une sorte de <tt class="docutils literal"><span class="pre">report</span></tt>,
+ou <tt class="docutils literal"><span class="pre">howto</span></tt> plus proche du style de <tt class="docutils literal"><span class="pre">article</span></tt>.
+J&#8217;ai choisi <tt class="docutils literal"><span class="pre">howto</span></tt> pour avoir une documentation plus compacte.</p>
+<p>Modifs à faire dans le fichier <tt class="docutils literal"><span class="pre">Makefile</span></tt> :</p>
+<div class="highlight-guess"><div class="highlight"><pre><span class="c"># ajouter au début : le dossier temporaire pour la compilation Latex</span>
+<span class="nv">PDFBUILDDIR</span> <span class="o">=</span> build
+
+<span class="c"># nettoyage des fichiers générés</span>
+<span class="nf">clean</span><span class="o">:</span>
+   rm -rf <span class="k">$(</span>BUILDDIR<span class="k">)</span>/*
+   rm -rf <span class="k">$(</span>PDFBUILDDIR<span class="k">)</span>
+
+<span class="c"># builds pour latex et latexpdf (compile le pdf en plus de générer le Latex)</span>
+<span class="nf">latex</span><span class="o">:</span>
+   <span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -b latex <span class="k">$(</span>ALLSPHINXOPTS<span class="k">)</span> <span class="k">$(</span>PDFBUILDDIR<span class="k">)</span>/latex
+   @echo <span class="s2">&quot;Build finished; the LaTeX files are in </span><span class="k">$(</span>PDFBUILDDIR<span class="k">)</span><span class="s2">/latex.&quot;</span>
+   @echo <span class="s2">&quot;Run \`make&#39; in that directory to run these through (pdf)latex&quot;</span> <span class="se">\</span>
+         <span class="s2">&quot;(use \`make latexpdf&#39; here to do that automatically).&quot;</span>
+
+<span class="nf">latexpdf</span><span class="o">:</span>
+   <span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -b latex <span class="k">$(</span>ALLSPHINXOPTS<span class="k">)</span> <span class="k">$(</span>PDFBUILDDIR<span class="k">)</span>/latex
+   @echo <span class="s2">&quot;Running LaTeX files through pdflatex...&quot;</span>
+   <span class="k">$(</span>MAKE<span class="k">)</span> -C <span class="k">$(</span>PDFBUILDDIR<span class="k">)</span>/latex all-pdf
+   cp <span class="k">$(</span>PDFBUILDDIR<span class="k">)</span>/latex/*.pdf .
+   rm -rf <span class="k">$(</span>PDFBUILDDIR<span class="k">)</span>
+   @echo <span class="s2">&quot;pdflatex finished&quot;</span>
+</pre></div>
+</div>
+<p>Et pour le fichier <tt class="docutils literal"><span class="pre">conf.py</span></tt> :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">language</span> <span class="o">=</span> <span class="s">&#39;fr&#39;</span>
+
+<span class="s">&#39;papersize&#39;</span><span class="p">:</span> <span class="s">&#39;a4paper&#39;</span><span class="p">,</span>
+<span class="s">&#39;pointsize&#39;</span><span class="p">:</span> <span class="s">&#39;12pt&#39;</span><span class="p">,</span>
+
+<span class="c"># The language</span>
+<span class="s">&#39;babel&#39;</span><span class="p">:</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">usepackage[french]{babel}&#39;</span>
+
+<span class="c"># choisir &#39;howto&#39; au lieu de &#39;manual&#39; si vous le souhaitez</span>
+<span class="n">latex_documents</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="p">(</span><span class="s">&#39;index&#39;</span><span class="p">,</span> <span class="s">&#39;LibAsserv2014.tex&#39;</span><span class="p">,</span> <span class="s">&#39;LibAsserv 2014 Documentation&#39;</span><span class="p">,</span>
+   <span class="s">&#39;Matthieu Pizenberg&#39;</span><span class="p">,</span> <span class="s">&#39;howto&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 

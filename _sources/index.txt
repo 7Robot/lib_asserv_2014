@@ -16,7 +16,7 @@ https://github.com/7Robot/lib_asserv_2014
 Table des matières:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    intro
    motion
