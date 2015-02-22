@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="documentation LibAsserv 2014 0.1" href="index.html"/>
-        <link rel="next" title="Déplacement du robot" href="motion.html"/>
+        <link rel="next" title="Utilisation de la bibliothèque" href="user.html"/>
         <link rel="prev" title="Documentation de lib_asserv_2014" href="index.html"/> 
 
   
@@ -58,13 +58,21 @@
         
         
             <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plateforme-a-asservir">Plateforme à asservir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#objectifs-de-l-asservissement">Objectifs de l&#8217;asservissement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-de-la-bibliotheque-d-asservissement">Implémentation de la bibliothèque d&#8217;asservissement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">Utilisation de la bibliothèque</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motion.html">Déplacement du robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="asserv.html">Asservissement du robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odo.html">Odométrie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pid.html">Régulateur PID</a></li>
 <li class="toctree-l1"><a class="reference internal" href="docu.html">Construire cette documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docu.html#la-documentation-avec-sphinx">La documentation avec Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docu.html#installation-de-sphinx">Installation de Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docu.html#initialiser-la-documentation">Initialiser la documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docu.html#configuration-de-la-documentation-sphinx">Configuration de la documentation Sphinx</a></li>
 </ul>
 </li>
 </ul>
@@ -103,6 +111,63 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Bienvenu sur documentation de la bibliothèque utilisée pour
+l&#8217;asservissement du robot Fatman pour la coupe de France de robotique 2014.</p>
+<p>Vous trouverez le code source sur le dépot Github suivant :
+<a class="reference external" href="https://github.com/7Robot/lib_asserv_2014">https://github.com/7Robot/lib_asserv_2014</a></p>
+<p>Vous trouverez la version pdf de cette documentation ici :
+<a class="reference external" href="https://github.com/7Robot/lib_asserv_2014/raw/documentation/docs/LibAsserv2014.pdf">https://github.com/7Robot/lib_asserv_2014/raw/documentation/docs/LibAsserv2014.pdf</a>
+(elle n&#8217;est pas nécessairement à jour par rapport à la version web).</p>
+<div class="section" id="plateforme-a-asservir">
+<h2>Plateforme à asservir<a class="headerlink" href="#plateforme-a-asservir" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Cette bibliothèque répond à un besoin précis :
+<strong>pouvoir contrôler le déplacement d&#8217;un robot, en vitesse ou en position</strong>.
+Ce robot doit être assimilable à une plateforme différentielle,
+considérée comme holonome.</p>
+<a class="reference internal image-reference" href="_images/diff.svg"><div align="center" class="align-center"><img src="_images/diff.svg" width="70%" /></div>
+</a>
+<dl class="docutils">
+<dt>Plateforme différentielle</dt>
+<dd>Une plateforme différentielle est constituée de 2 roues commandées
+indépendamment ce qui permet souvent de la considérer holonome.</dd>
+<dt>Plateforme holonome</dt>
+<dd>Pour faire simple, on peut dire qu&#8217;une plateforme est dite holonome
+si elle peut se déplacer dans toutes les directions depuis
+sa position courante.</dd>
+</dl>
+</div>
+<div class="section" id="objectifs-de-l-asservissement">
+<h2>Objectifs de l&#8217;asservissement<a class="headerlink" href="#objectifs-de-l-asservissement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le robot est utilisé pour participer à la <a class="reference external" href="http://www.eurobot.org/">coupe de France de robotique 2014</a>.
+Il doit pouvoir se déplacer de manière autonome sur un plateaux
+au dimensions suivantes : 2m x 3m.
+Il n&#8217;est pas seul sur le plateaux, il peut y avoir jusque 4 robots.
+Il y a aussi des éléments de jeu fixe et mobiles sur le plateau.</p>
+<p>Compte tenu de ces conditions, il est inutile de chercher la vitesse.
+Par contre il peut être très intéressant d&#8217;avoir des bonnes capacités
+d&#8217;accélération et de frein pour naviguer le plus efficacement possible.</p>
+<p>La limite de l&#8217;<strong>intelligence</strong> de l&#8217;asservissement est par contre assez
+difficile à définir. Il peut être intéressant de le rendre autonome
+(évitement des obstacles intégré par exemple) mais plus complexe.
+Mais a contrario il peut être aussi plus souple de garder le contrôle
+global de la trajectoire par un composant plus au niveau du robot
+(IA sur Raspberry Pi par exemple) et de ne contrôler avec cette
+bibliothèque d&#8217;asservissement que les déplacement de <strong>bas niveau</strong>.</p>
+<p>J&#8217;ai opté pour ce 2<sup>e</sup> choix aussi parce que ça simplifie
+la bibliothèque d&#8217;asservissement.</p>
+</div>
+<div class="section" id="implementation-de-la-bibliotheque-d-asservissement">
+<h2>Implémentation de la bibliothèque d&#8217;asservissement<a class="headerlink" href="#implementation-de-la-bibliotheque-d-asservissement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L&#8217;objectif étant de faire une bibliothèque réutilisable et indépendante
+de la configuration du robot, on a choisi de la développer en C pur.
+Ceci nous permet de l&#8217;utiliser avec n&#8217;importe qu&#8217;elle plateforme
+de programmation supportant la compilation de langage C.</p>
+<p>A <a class="reference external" href="http://7robot.fr">7Robot</a>, nous utilisons une plateforme basée sur des
+microcontroleurs PIC (Microchip) pour contrôler les moteurs du robot.
+Nous utilisons le logiciel
+<a class="reference external" href="http://www.microchip.com/pagehandler/en-us/family/mplabx/">MPLAB X</a>
+avec des PICkit pour compiler notre code et le charger sur des dsPIC33f.</p>
+</div>
 </div>
 
 
@@ -111,7 +176,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="motion.html" class="btn btn-neutral float-right" title="Déplacement du robot"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="user.html" class="btn btn-neutral float-right" title="Utilisation de la bibliothèque"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Documentation de lib_asserv_2014"><span class="fa fa-arrow-circle-left"></span> Previous</a>

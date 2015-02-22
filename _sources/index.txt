@@ -7,18 +7,11 @@
 Documentation de lib_asserv_2014
 ################################
 
-Bienvenu sur documentation de la bibliothèque utilisée pour
-l'asservissement du robot Fatman pour la coupe de France de robotique 2014.
-
-Vous trouverez le code source sur le dépot Github suivant :
-https://github.com/7Robot/lib_asserv_2014
-
-Table des matières:
-
 .. toctree::
    :maxdepth: 3
 
    intro
+   user
    motion
    asserv
    odo
