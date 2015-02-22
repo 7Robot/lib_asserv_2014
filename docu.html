@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Odométrie &mdash; documentation LibAsserv 2014 0.1</title>
+  <title>Construire cette documentation &mdash; documentation LibAsserv 2014 0.1</title>
   
 
   
@@ -29,8 +29,7 @@
 
   
     <link rel="top" title="documentation LibAsserv 2014 0.1" href="index.html"/>
-        <link rel="next" title="Régulateur PID" href="pid.html"/>
-        <link rel="prev" title="Asservissement du robot" href="asserv.html"/> 
+        <link rel="prev" title="Régulateur PID" href="pid.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -61,10 +60,10 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motion.html">Déplacement du robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="asserv.html">Asservissement du robot</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Odométrie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odo.html">Odométrie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pid.html">Régulateur PID</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docu.html">Construire cette documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docu.html#la-documentation-avec-sphinx">La documentation avec Sphinx</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Construire cette documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#la-documentation-avec-sphinx">La documentation avec Sphinx</a></li>
 </ul>
 </li>
 </ul>
@@ -90,10 +89,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Odométrie</li>
+    <li>Construire cette documentation</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/odo.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/docu.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -101,8 +100,34 @@
 </div>
           <div role="main">
             
-  <div class="section" id="odometrie">
-<h1>Odométrie<a class="headerlink" href="#odometrie" title="Lien permanent vers ce titre">¶</a></h1>
+  <div class="section" id="construire-cette-documentation">
+<h1>Construire cette documentation<a class="headerlink" href="#construire-cette-documentation" title="Lien permanent vers ce titre">¶</a></h1>
+<p>L&#8217;objectif est d&#8217;avoir une documentation facilement maintenable
+tout en étant suffisamment riche en fonctionnalités pour pouvoir
+décrire l&#8217;ensemble du code. Il est donc important d&#8217;avoir
+le support de fonctionnalités telles que :</p>
+<ul class="simple">
+<li>Une syntaxe simple</li>
+<li>Ecrire du code source</li>
+<li>Inclure des images</li>
+<li>Utiliser des mathématiques</li>
+<li>Une navigation simple dans la documentation</li>
+</ul>
+<p>J&#8217;avais le choix entre 2 types de documentations :</p>
+<ol class="arabic simple">
+<li>Une documentation générée à partir de fichiers
+<a class="reference external" href="http://fr.wikipedia.org/wiki/Markdown">Markdown</a>.</li>
+<li>Ou une documentation générée à partir de fichiers rST
+(<a class="reference external" href="http://fr.wikipedia.org/wiki/ReStructuredText">reStructuredText</a>).</li>
+</ol>
+<p>J&#8217;ai opté pour la 2<sup>e</sup> car elle gère mieux l&#8217;affichage
+des formules mathématiques (à la mode LaTeX)
+et qu&#8217;elle permet d&#8217;exporter la documentation vers un pdf.</p>
+<div class="section" id="la-documentation-avec-sphinx">
+<h2>La documentation avec Sphinx<a class="headerlink" href="#la-documentation-avec-sphinx" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Sphinx est un outil pour générer facilement de la documentation
+à base de fichier respectant la syntaxe rST (reStructuredText).</p>
+</div>
 </div>
 
 
@@ -111,10 +136,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pid.html" class="btn btn-neutral float-right" title="Régulateur PID"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="asserv.html" class="btn btn-neutral" title="Asservissement du robot"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pid.html" class="btn btn-neutral" title="Régulateur PID"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
