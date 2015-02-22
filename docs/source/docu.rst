@@ -21,7 +21,7 @@ J'avais le choix entre 2 types de documentations :
    (`reStructuredText <http://fr.wikipedia.org/wiki/ReStructuredText>`_).
 
 J'ai opté pour la 2\ |ieme| car elle gère mieux l'affichage
-des formules mathématiques (à la mode :math:`\LaTeX`)
+des formules mathématiques (à la mode LaTeX)
 et qu'elle permet d'exporter la documentation vers un pdf.
 
 ****************************
