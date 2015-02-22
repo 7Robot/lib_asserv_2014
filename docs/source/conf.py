@@ -206,7 +206,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'LibAsserv2014.tex', 'LibAsserv 2014 Documentation',
-   'Matthieu Pizenberg', 'howto'),
+   'Matthieu Pizenberg', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
