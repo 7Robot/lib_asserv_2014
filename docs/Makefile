@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = ../../lib_asserv_2014_gh-pages
 PDFBUILDDIR   = build
+PDF           = $(PDFBUILDDIR)/latex/LibAsserv2014.pdf
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -116,7 +117,7 @@ latexpdf:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(PDFBUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
 	$(MAKE) -C $(PDFBUILDDIR)/latex all-pdf
-	cp $(PDFBUILDDIR)/latex/*.pdf .
+	cp $(PDF) .
 	rm -rf $(PDFBUILDDIR)
 	@echo "pdflatex finished"
 
