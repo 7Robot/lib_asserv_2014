@@ -13,6 +13,7 @@ void motion_init(void(*_done)(void));
 void motion_free(); // passer en roue libre
 
 /** Description courte qui finit à ce point. La suite en détails
+ * doc dans lib_asserv.h
  * Donne la position à atteindre
  * @param[in] pos La position à atteindre.
  */

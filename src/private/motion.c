@@ -74,6 +74,12 @@ float get_vd(){
 
 // consignes de déplacements du robot
 void motion_free(){set_asserv_off();}
+
+/** Description courte qui finit à ce point. La suite en détails
+ * doc dans motion.c
+ * Donne la position à atteindre
+ * @param[in] pos La position à atteindre.
+ */
 void motion_pos(Position pos){
     pos_asserv.stop_distance = DEFAULT_STOP_DISTANCE;
     pos_asserv.done = 0;
