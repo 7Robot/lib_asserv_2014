@@ -34,6 +34,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
+    'breathe',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -101,6 +102,10 @@ pygments_style = 'sphinx'
 
 
 # -- Options for HTML output ----------------------------------------------
+
+# Tell breathe about the project
+breathe_projects = { "LibAsserv2014": "../doxy/generated/xml/" }
+breathe_default_project = "LibAsserv2014"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
